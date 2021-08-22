@@ -27,29 +27,23 @@ public class QLTapLuat_Sua extends javax.swing.JDialog {
         this.luatCanSua = luatCanSua;
         txtKL.setText(luatCanSua.getKL());
         String[] gt = luatCanSua.getGT().trim().split("\\^");
-        System.out.println(gt.toString());
-        for (int i = 0; i < gt.length; i++) {
-            System.out.println("gt["+i+"] = "+gt[i]);
-        }
-        System.out.println("luat can sua: "+luatCanSua.getMaLuat()+":   "+luatCanSua.getGT()+"-->"+luatCanSua.getKL());
         ArrayList<SuKien> allSuKien = SuKienDB.getAllSuKien();
+        
         for (SuKien suKien : allSuKien) {
             if(suKien.getMaNhom().trim().equalsIgnoreCase("nhom5")){
                 kl.add(suKien);
-                System.out.println("nhom 5: "+suKien.getMaSuKien()+":   "+suKien.getNoiDung());
             }
             else
                 if(laGTCuaLuatSua(gt, suKien)){
                     gtDaChon.add(suKien);
                     if(suKien.getMaNhom().trim().equalsIgnoreCase("nhom4"))
-                    {kl.add(suKien);System.out.println("nhom4 daco :  "+suKien.getMaSuKien()+":   "+suKien.getNoiDung());}
+                    {kl.add(suKien);}
                 } else if(suKien.getMaNhom().trim().equalsIgnoreCase("nhom4")){
                     kl.add(suKien);
                     gtChuaChon.add(suKien);
-                    System.out.println("nhom4 chua co: "+suKien.getMaSuKien()+":   "+suKien.getNoiDung());
                 }
                 else
-                {gtChuaChon.add(suKien);System.out.println("conlai: "+suKien.getMaSuKien()+":   "+suKien.getNoiDung());}
+                {gtChuaChon.add(suKien);}
 
         }
         modelChuaChon.setList(gtChuaChon);

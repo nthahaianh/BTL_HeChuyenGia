@@ -21,22 +21,27 @@ public class QLThucDon_Sua extends javax.swing.JDialog {
         this.tdSua = tdSua;
         txtMa.setText(tdSua.getMaSuKien());
         txtThucDonCu.setText(tdSua.getNoiDung());
-//        String mon[] = tdSua.getNoiDung().split(",");
-//        System.out.println(tdSua.getNoiDung());
-//        for (int i = 0; i < mon.length; i++) {
-//            System.out.println("i = "+i+" - "+mon[i].trim());
-//        }
+        String mon[] = tdSua.getNoiDung().split("\\,");
+        System.out.println(tdSua.getNoiDung());
+        for (int i = 0; i < mon.length; i++) {
+            System.out.println("i = "+i+" - "+mon[i].trim());
+        }
         allMon = SuKienDB.getAllMon();
         monDaChon = new ArrayList<>();
-//        for(int i=0; i<allMon.size(); i++){
-//            int j = 0;
-//            while(j<mon.length){                
-//                if(allMon.get(i).getNoiDung().trim().equals(mon[j].trim()))
-//                    monDaChon.add(allMon.get(i));
-//                allMon.remove(allMon.get(i));
-//                j++;
-//            }
-//        }
+        int i = 0;
+        while(i<allMon.size()){
+            int j = 0;
+            while(j<mon.length){
+                SuKien monCheck = allMon.get(i);
+                if(monCheck.getNoiDung().trim().equalsIgnoreCase(mon[j].trim())){                    
+                    monDaChon.add(monCheck);
+                    allMon.remove(monCheck);
+                }
+                j++;
+            }
+            i++;
+        }
+        
         modelChuaChon.setList(allMon);
         modelDaChon.setList(monDaChon);
         tableChuaChon.setModel(modelChuaChon);
