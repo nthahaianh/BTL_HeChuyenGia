@@ -11,7 +11,6 @@ public class TrangChu_Form extends javax.swing.JFrame {
         initComponents();
         thisForm = this;
         setLocationRelativeTo (null);
-//        btnQLNguyenLieu.setEnabled(false);
     }
 
     /**
